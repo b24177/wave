@@ -16,8 +16,10 @@ ActiveRecord::Schema.define(version: 2020_09_17_181310) do
   enable_extension "plpgsql"
 
   create_table "artists", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.string "location"
+    t.float "longitude"
+    t.float "latitude"
     t.string "spotify_id"
     t.string "facebook_id"
     t.datetime "created_at", precision: 6, null: false
