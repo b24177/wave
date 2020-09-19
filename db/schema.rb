@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_19_091421) do
+
+ActiveRecord::Schema.define(version: 2020_09_19_093610) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +48,15 @@ ActiveRecord::Schema.define(version: 2020_09_19_091421) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "contents", force: :cascade do |t|
+    t.bigint "post_id", null: false
+    t.string "format"
+    t.text "data"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_contents_on_post_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.bigint "artist_id"
     t.string "source"
@@ -78,7 +88,9 @@ ActiveRecord::Schema.define(version: 2020_09_19_091421) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "contents", "posts"
   add_foreign_key "user_artists", "artists"
   add_foreign_key "user_artists", "users"
 end
