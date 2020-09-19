@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_17_181310) do
+ActiveRecord::Schema.define(version: 2020_09_19_082916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,16 @@ ActiveRecord::Schema.define(version: 2020_09_17_181310) do
     t.index ["artist_id"], name: "index_posts_on_artist_id"
   end
 
+  create_table "user_artists", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "artist_id", null: false
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["artist_id"], name: "index_user_artists_on_artist_id"
+    t.index ["user_id"], name: "index_user_artists_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -47,4 +57,6 @@ ActiveRecord::Schema.define(version: 2020_09_17_181310) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "user_artists", "artists"
+  add_foreign_key "user_artists", "users"
 end
