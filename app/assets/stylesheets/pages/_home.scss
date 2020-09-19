@@ -1,1 +1,17 @@
 // Specific CSS for your home-page
+.home-cover {
+  background-size: cover;
+  background-position: bottom;
+  background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://res.cloudinary.com/dtdxhxnyd/image/upload/v1600522243/j96bxa4oap7gelr8ess0.jpg');
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  position: absolute;
+  width: 640px;
+  height: 960px;
+  left: -192px;
+  top: -159px;
+}
