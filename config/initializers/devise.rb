@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+require 'rspotify/oauth'
 # Assuming you have not yet modified this file, each configuration option below
 # is set to its default value. Note that some are commented out while others
 # are not: uncommented lines are intended to protect your configuration from
@@ -308,4 +308,5 @@ Devise.setup do |config|
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
+  config.omniauth :spotify, '0ba61e6a16f244b7a7a3abc075d61462', '5cf72806ee9c4bd6baa5b0427279c32a', scope: 'user-read-email playlist-read-private user-library-read playlist-read-collaborative user-follow-read'
 end

@@ -6,6 +6,8 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+RSpotify::authenticate("0ba61e6a16f244b7a7a3abc075d61462", "5cf72806ee9c4bd6baa5b0427279c32a")
+
 module Wave
   class Application < Rails::Application
     config.generators do |generate|
