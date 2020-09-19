@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_19_082916) do
+ActiveRecord::Schema.define(version: 2020_09_19_093610) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,15 @@ ActiveRecord::Schema.define(version: 2020_09_19_082916) do
     t.string "facebook_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "contents", force: :cascade do |t|
+    t.bigint "post_id", null: false
+    t.string "format"
+    t.text "data"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_contents_on_post_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -57,6 +66,7 @@ ActiveRecord::Schema.define(version: 2020_09_19_082916) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "contents", "posts"
   add_foreign_key "user_artists", "artists"
   add_foreign_key "user_artists", "users"
 end
