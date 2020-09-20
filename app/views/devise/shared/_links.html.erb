@@ -1,6 +1,6 @@
 <%- if devise_mapping.omniauthable? %>
   <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= link_to "LOG IN WITH #{OmniAuth::Utils.camelize(provider)}",
+    <%= link_to "LOG IN WITH SPOTIFY",
     omniauth_authorize_path(resource_name, provider),
     class: 'btn-login-invert mb-5 mt-5'
   %><br />
