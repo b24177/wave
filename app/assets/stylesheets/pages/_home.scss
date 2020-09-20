@@ -2,10 +2,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap');
 .home-cover {
-  background-size: cover;
-  background-position: center;
-  background-image: url('https://res.cloudinary.com/dtdxhxnyd/image/upload/v1600524105/lks4browuz7vj1ttonqa.png');
+  width: 100%;
   height: 100vh;
+  position: fixed;
+  background-image: url('https://res.cloudinary.com/dtdxhxnyd/image/upload/v1600605567/btm3rsmx7l8tfxv08dzv.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center bottom;
   h1 {
     font-family: 'Roboto', sans-serif;
     font-style: normal;
@@ -30,13 +33,51 @@
   padding: 16px 16px;
   width: 199px;
   margin: 0 auto;
+  &:hover {
+    text-decoration: none;
+    color: #000;
+  }
 }
 .btn-login {
   color: #fff;
+  &:hover {
+    text-decoration: none;
+    color: #fff;
+  }
 }
 .btns-home {
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
+}
+@media (min-width:320px) { /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+  .home-cover {
+    background-position: center top;
+  }
+}
+@media (min-width:480px)  { /* smartphones, Android phones, landscape iPhone */
+  .home-cover {
+    background-position: center top;
+  }
+}
+@media (min-width:600px)  { /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+  .home-cover {
+    background-position: center top;
+  }
+}
+@media (min-width:801px)  { /* tablet, landscape iPad, lo-res laptops ands desktops */
+  .home-cover {
+    background-position: center top;
+  }
+}
+@media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */
+  .home-cover {
+    background-position: center top;
+  }
+}
+@media (min-width:1281px) { /* hi-res laptops and desktops */
+  .home-cover {
+    background-position: center center;
+  }
 }
