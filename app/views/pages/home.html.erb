@@ -1,2 +1,13 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="home-cover">
+  <div class="text-center fixed-top mt-5 py-4">
+    <%= render 'shared/logo' %>
+    <h1>Welcome to Wave!</h1>
+    <p>All content from your favorite artists in one app!</p>
+  </div>
+  <div class="btns-home fixed-bottom pb-4">
+    <%= link_to 'SIGN UP', new_user_registration_path, class: 'btn-signup mb-4' %>
+    <%= link_to 'LOG IN WITH SPOTIFY', 'users/auth/spotify', class: 'btn-login mb-1' %>
+    <%= link_to 'LOG IN WITH EMAIL', new_user_session_path, class: 'btn-login' %>
+  </div>
+</div>
+

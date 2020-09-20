@@ -1,1 +1,42 @@
 // Specific CSS for your home-page
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap');
+.home-cover {
+  background-size: cover;
+  background-position: center;
+  background-image: url('https://res.cloudinary.com/dtdxhxnyd/image/upload/v1600524105/lks4browuz7vj1ttonqa.png');
+  height: 100vh;
+  h1 {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 42px;
+  }
+  p {
+    width: 271px;
+    margin: 0 auto;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 21px;
+  }
+}
+.btn-signup {
+  background: #fff;
+  color: #000;
+  border-radius: 44px;
+  padding: 16px 16px;
+  width: 199px;
+  margin: 0 auto;
+}
+.btn-login {
+  color: #fff;
+}
+.btns-home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
