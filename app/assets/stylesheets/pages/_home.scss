@@ -1,6 +1,3 @@
-// Specific CSS for your home-page
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap');
 .home-cover {
   width: 100%;
   height: 100vh;
@@ -10,7 +7,7 @@
   background-size: cover;
   background-position: center bottom;
   h1 {
-    font-family: 'Roboto', sans-serif;
+    font-family: $headers-font;
     font-style: normal;
     font-weight: 500;
     font-size: 36px;
@@ -19,30 +16,11 @@
   p {
     width: 271px;
     margin: 0 auto;
-    font-family: 'Roboto', sans-serif;
+    font-family: $body-font;
     font-style: normal;
     font-weight: 300;
     font-size: 18px;
     line-height: 21px;
-  }
-}
-.btn-signup {
-  background: #fff;
-  color: #000;
-  border-radius: 44px;
-  padding: 16px 16px;
-  width: 199px;
-  margin: 0 auto;
-  &:hover {
-    text-decoration: none;
-    color: #000;
-  }
-}
-.btn-login {
-  color: #fff;
-  &:hover {
-    text-decoration: none;
-    color: #fff;
   }
 }
 .btns-home {
