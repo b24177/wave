@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :posts, only: [:index, :show]
   resources :artists, only: [:index, :show, :update]
   resources :contents, only: [:index, :show]
+  get '/posts' => "posts#index", :as => :user_root
 end

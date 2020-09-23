@@ -12,4 +12,42 @@ left: -0.5px;
 top: 1px;
 padding: 11px;
 color: white;
+
+.btn-signup {
+  background: #fff;
+  color: #000;
+  border-radius: 44px;
+  padding: 16px 16px;
+  width: 199px;
+  margin: 0 auto;
+  &:hover {
+    text-decoration: none;
+    color: #000;
+  }
+}
+.btn-login {
+  color: #fff;
+  &:hover {
+    text-decoration: none;
+    color: #fff;
+  }
+}
+.btn-signup-invert {
+  background: #000;
+  color: #fff;
+  border-radius: 44px;
+  padding: 16px 16px;
+  width: 199px;
+  margin: 0 auto;
+  &:hover {
+    text-decoration: none;
+    color: #fff;
+  }
+}
+.btn-login-invert {
+  color: #000;
+  &:hover {
+    text-decoration: none;
+    color: #000;
+  }
 }

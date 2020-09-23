@@ -1,0 +1,19 @@
+body {
+  background-color: #fff;
+}
+h1 {
+  font-family: $headers-font;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 42px;
+}
+p {
+  width: 300px;
+  margin: 0 auto;
+  font-family: $body-font;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 21px;
+}
