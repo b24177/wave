@@ -1,5 +1,7 @@
 <h1>Artist</h1>
 
 <div class="cards">
- <%= render "shared/artist_card"%>
+  <% @artists.each do |artist|%>
+    <%= render "shared/artist_card",artist:artist%>
+  <% end %>
 </div>
