@@ -1,0 +1,8 @@
+<div class="universal-card artist-card">
+    <%=  cl_image_tag('https://res.cloudinary.com/dtdxhxnyd/image/upload/v1600968675/vk2rve6cjgvstklrmcql.jpg', :cloud_name => 'dtdxhxnyd') %>
+    <div class="content">
+      <h3><%= artist.name %></h3>
+      <p>Followers</p>
+    </div>
+    <%= button_to "Follow", follow_artist_url(1), :method => :patch, :class => "btn-follow" %>
+  </div>
