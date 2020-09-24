@@ -8,4 +8,6 @@ class ArtistsController < ApplicationController
     @artist = Artist.find(params[:id])
   end
   def update; end
+
+  def follow; end
 end

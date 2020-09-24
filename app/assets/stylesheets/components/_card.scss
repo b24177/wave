@@ -21,11 +21,9 @@ margin: auto;
 }
 
 .artist-card .content {
-  text-align: center;
-}
-
-.artist-card a {
-
+  display: flex;
+  flex-direction: row;
+  text-align: left;
 }
 
 .artist-card .content h3 {
