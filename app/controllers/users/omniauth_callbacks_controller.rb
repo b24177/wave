@@ -46,6 +46,15 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       new_artist = Artist.create!(name: artist.name, spotify_id: artist.id) unless Artist.exists?(name: artist.name)
       UserArtist.create(artist: new_artist, user: @user, status: nil )
     end
+    @playlists = spotify_user.playlists
+    @playlists.each do |playlist|
+      playlist.tracks.each do |track|
+        track.artists.each do |artist|
+          new_artist = Artist.create!(name: artist.name, spotify_id: artist.id) unless Artist.exists?(name: artist.name)
+          UserArtist.create(artist: new_artist, user: @user, status: nil )
+        end
+      end
+    end
   end
 
   def failure
