@@ -1,1 +1,5 @@
 <h1>Feed</h1>
+<% @posts.each do |post| %>
+  <div><%= post.artist.name %> posted on <%= post.source %></div>
+  <div><%= post.contents.first.data %></div>
+<% end %>
