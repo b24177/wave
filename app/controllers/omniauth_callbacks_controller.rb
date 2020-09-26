@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 require 'open-uri'
+require 'musicbrainz'
 
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_before_action :verify_authenticity_token
@@ -43,7 +44,9 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       # redirect_to new_user_registration_url
     end
     @artists = spotify_user.top_artists
+
     @artists.each do |artist|
+      musicbrainz(artist.name)
       unless Artist.exists?(spotify_id: artist.id)
         avatar = URI.open(artist.images.last['url'])
         new_artist = Artist.new(name: artist.name, spotify_id: artist.id)
@@ -56,5 +59,10 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def failure
     redirect_to root_path
+  end
+
+  def musicbrainz(query)
+    @mb_artist = MusicBrainz::Artist.find_by_name(query)
+    raise unless @mb_artist.urls.empty?
   end
 end
