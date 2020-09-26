@@ -26,7 +26,7 @@ class User < ApplicationRecord
     end
   end
   def follow(artist_id)
-    user_artists.find_by(artist_id: artist_id).update(status: "follow")
+    user_artists.find_or_create_by(artist_id: artist_id).update(status: "follow")
   end
 
   def unfollow(artist_id)
