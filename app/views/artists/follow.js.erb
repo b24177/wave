@@ -1,0 +1,6 @@
+function renderArtist(userHTML) {
+  const artist = document.querySelector("[data-artist='<%= @artist.id %>']");
+  artist.outerHTML = userHTML;
+}
+
+renderArtist('<%= j render "shared/artist_card",artist:@artist %>');
