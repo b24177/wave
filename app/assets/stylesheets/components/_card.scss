@@ -1,9 +1,9 @@
 .universal-card {
 background: #FFFFFF;
-box-shadow: 4px 5px 20px rgba(0, 0, 0, 0.07);
+box-shadow: 3px 4px 10px rgba(0, 0, 0, 0.04);
 border-radius: 10px;
 width: 318px;
-margin: auto;
+margin: 16px auto;
 }
 
 .artist-card {
@@ -20,20 +20,18 @@ margin: auto;
   border-radius: 50%;
 }
 
-.artist-card .content {
-  display: flex;
-  flex-direction: row;
-  text-align: left;
-}
 
-.artist-card .content h3 {
+
+.artist-card h3 {
   font-family: Roboto;
   font-size: 17px;
   font-weight: 700;
 }
 
-.artist-card .content p {
+.artist-card p {
   font-family: Roboto;
   font-size: 9px;
   font-weight: 300;
 }
+
+
