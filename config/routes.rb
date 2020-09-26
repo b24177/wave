@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   resources :posts, only: [:index, :show]
   resources :artists, only: [:index, :show, :update] do
     member do
-      patch :follow
+      post :follow
+      post :unfollow
     end
 
   end
