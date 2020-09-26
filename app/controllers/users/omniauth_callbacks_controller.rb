@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'open-uri'
 
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_before_action :verify_authenticity_token, only: :spotify
@@ -41,19 +42,13 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       # session["devise.spotify_data"] = request.env["omniauth.auth"].except(:extra) # Removing extra as it can overflow some session stores
       # redirect_to new_user_registration_url
     end
-    @artists = spotify_user.top_artists
+    @artists = spotify_user.top_artists(limit: 50, time_range: 'short_term')
     @artists.each do |artist|
-      new_artist = Artist.create!(name: artist.name, spotify_id: artist.id) unless Artist.exists?(name: artist.name)
-      UserArtist.create(artist: new_artist, user: @user, status: nil )
-    end
-    @playlists = spotify_user.playlists
-    @playlists.each do |playlist|
-      playlist.tracks.each do |track|
-        track.artists.each do |artist|
-          new_artist = Artist.create!(name: artist.name, spotify_id: artist.id) unless Artist.exists?(name: artist.name)
-          UserArtist.create(artist: new_artist, user: @user, status: nil )
-        end
-      end
+      avatar = URI.open(artist.images.last['url'])
+      new_artist = Artist.new(name: artist.name, spotify_id: artist.id)
+      new_artist.photo.attach(io: avatar, filename: 'avatar', content_type: 'image/jpg')
+      new_artist.save
+      UserArtist.create(artist: new_artist, user: @user, status: nil)
     end
   end
 

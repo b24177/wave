@@ -51,11 +51,11 @@
 }
 @media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */
   .home-cover {
-    background-position: center top;
+    background-position: center bottom;
   }
 }
 @media (min-width:1281px) { /* hi-res laptops and desktops */
   .home-cover {
-    background-position: center center;
+    background-position: center bottom;
   }
 }
