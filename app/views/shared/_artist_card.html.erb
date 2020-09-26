@@ -1,6 +1,8 @@
 <div class="universal-card">
     <div class="artist-card">
-    <%= cl_image_tag artist.photo.key %>
+      <% if artist.photo %>
+        <%= cl_image_tag artist.photo.key %>
+      <% end %>
       <h3 class="artist-card-text"><%= artist.name %></h3>
       <%= button_to "Unfollow", follow_artist_url(artist.id), :method => :patch, :class => "btn-follow" %>
     </div>
