@@ -1,0 +1,23 @@
+
+.artist-info {
+  display: flex;
+}
+
+.artist-img img {
+  border-radius: 50%;
+  width: 116px;
+  height: 116px;
+  position: absolute;
+  left: 233px;
+  top: 85px;
+}
+
+.artist-name {
+  font-family: Roboto;
+  font-size: 39px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 46px;
+  letter-spacing: 0em;
+  text-align: center;
+}
