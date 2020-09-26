@@ -44,7 +44,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       # redirect_to new_user_registration_url
     end
     @artists = spotify_user.top_artists
-
+    @artists_urls = []
     @artists.each do |artist|
       musicbrainz(artist.name)
       unless Artist.exists?(spotify_id: artist.id)
@@ -55,6 +55,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       end
       UserArtist.find_or_create_by(artist: new_artist, user: @user)
     end
+    raise
   end
 
   def failure
@@ -63,6 +64,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def musicbrainz(query)
     @mb_artist = MusicBrainz::Artist.find_by_name(query)
-    raise unless @mb_artist.urls.empty?
+    @artists_urls << @mb_artist.urls[:social_network] if @mb_artist.urls[:social_network]
   end
 end
