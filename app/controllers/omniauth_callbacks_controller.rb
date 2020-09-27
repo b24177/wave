@@ -45,8 +45,13 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
     @artists = spotify_user.top_artists
     @artists_urls = []
+    @fb_urls = []
     @artists.each do |artist|
       musicbrainz(artist.name)
+      @artists_urls = @artists_urls.flatten
+      @artists_urls.each do |url|
+        @fb_urls << url if url.include?('facebook.com') && !@fb_urls.include?(url)
+      end
       unless Artist.exists?(spotify_id: artist.id)
         avatar = URI.open(artist.images.last['url'])
         new_artist = Artist.new(name: artist.name, spotify_id: artist.id)
