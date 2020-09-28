@@ -44,7 +44,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       # redirect_to new_user_registration_url
     end
     get_top_artists(spotify_user)
-    raise
+    #raise
   end
 
   def failure
