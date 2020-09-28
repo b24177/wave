@@ -43,15 +43,20 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       # session["devise.spotify_data"] = request.env["omniauth.auth"].except(:extra) # Removing extra as it can overflow some session stores
       # redirect_to new_user_registration_url
     end
-    @artists = spotify_user.top_artists
-    @artists_urls = []
-    @fb_urls = []
-    @artists.each do |artist|
-      musicbrainz(artist.name)
-      @artists_urls = @artists_urls.flatten
-      @artists_urls.each do |url|
-        @fb_urls << url if url.include?('facebook.com') && !@fb_urls.include?(url)
-      end
+    get_top_artists(spotify_user)
+    raise
+  end
+
+  def failure
+    redirect_to root_path
+  end
+
+  private
+
+  def get_top_artists(user)
+    a = []
+    user.top_artists.each do |artist|
+      @fb_urls = musicbrainz(artist.name, a)
       unless Artist.exists?(spotify_id: artist.id)
         avatar = URI.open(artist.images.last['url'])
         new_artist = Artist.new(name: artist.name, spotify_id: artist.id)
@@ -63,12 +68,18 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     raise
   end
 
-  def failure
-    redirect_to root_path
-  end
-
-  def musicbrainz(query)
-    @mb_artist = MusicBrainz::Artist.find_by_name(query)
-    @artists_urls << @mb_artist.urls[:social_network] if @mb_artist.urls[:social_network]
+  def musicbrainz(query, array)
+    mb_artist = MusicBrainz::Artist.find_by_name(query)
+    urls = mb_artist.urls[:social_network]
+    if urls
+      if urls.class == Array
+        urls.each do |url|
+          array << url if url.include?('facebook.com') && !array.include?(url)
+        end
+      else
+        array << urls
+      end
+    end
+    array
   end
 end
