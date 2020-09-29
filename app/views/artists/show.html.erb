@@ -7,9 +7,12 @@
       <%= cl_image_tag @artist.photo.key %>
     </div>
   </div>
-    <div>
       <!-- list of all artist posts -->
+    <% @posts.each do |post|%>
+    <div class="artist-post">
+      <%= render "shared/feed_card", post:post%>
     </div>
+    <% end %>
 </div>
 
 
