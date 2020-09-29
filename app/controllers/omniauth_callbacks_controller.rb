@@ -65,7 +65,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       end
       UserArtist.find_or_create_by(artist: new_artist, user: @user)
     end
-    raise
   end
 
   def musicbrainz(query, array)
