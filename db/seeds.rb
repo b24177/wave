@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-puts "deleting prior records"
+print "deleting prior records"
 UserArtist.delete_all
 User.delete_all
 Artist.delete_all
@@ -13,33 +13,17 @@ Content.delete_all
 Post.delete_all
 
 
-puts 'Creating users...'
-
-# user1 = User.create!({
-#    email: 'testUser@gmail.com',
-#   password: 'password'
-# })
+print 'Creating new records'
 
 artist1 = Artist.new({
   name: 'Lust for Youth',
   location: 'Copenhagen',
-  spotify_id: 1234,
-  facebook_id: 5678,
+  spotify_id: '18x7cMASHAS2NJ4kcLJa1u',
+  facebook_id: nil
 })
 
 artist1.photo.attach(io: File.open("app/assets/images/Artist.jpg"), filename: "Artist", content_type: "image/jpg")
 artist1.save
-
-post1 = Post.new({
-  artist: artist1,
-  source: 'Facebook'
-})
-
-
-Post.create!({
-  artist: artist1,
-  source: 'Instagram'
-})
 
 facebook_post = Post.create!({
   artist: artist1,
@@ -49,9 +33,3 @@ facebook_post = Post.create!({
 
 facebook_post.photo.attach(io: File.open("app/assets/images/postimage.jpg"), filename: "Post Image", content_type: "image/jpg")
 facebook_post.save
-
-content1 = Content.create! ({
-  format: 'text',
-  data: 'Listen to my new song',
-  post: post1
-})
