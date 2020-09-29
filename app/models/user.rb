@@ -25,6 +25,7 @@ class User < ApplicationRecord
       # user.skip_confirmation!
     end
   end
+
   def follow(artist_id)
     user_artists.find_or_create_by(artist_id: artist_id).update(status: "follow")
   end
@@ -32,6 +33,7 @@ class User < ApplicationRecord
   def unfollow(artist_id)
     user_artists.find_by(artist_id: artist_id).update(status: "unfollow")
   end
+
   def is_following?(artist_id)
     user_artists.where(artist_id: artist_id, status: "follow").exists?
    end

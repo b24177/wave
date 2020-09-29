@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 require 'open-uri'
+require 'musicbrainz'
 
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_before_action :verify_authenticity_token
@@ -42,8 +43,20 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       # session["devise.spotify_data"] = request.env["omniauth.auth"].except(:extra) # Removing extra as it can overflow some session stores
       # redirect_to new_user_registration_url
     end
-    @artists = spotify_user.top_artists
-    @artists.each do |artist|
+    get_top_artists(spotify_user)
+    #raise
+  end
+
+  def failure
+    redirect_to root_path
+  end
+
+  private
+
+  def get_top_artists(user)
+    a = []
+    user.top_artists.each do |artist|
+      @fb_urls = musicbrainz(artist.name, a)
       unless Artist.exists?(spotify_id: artist.id)
         avatar = URI.open(artist.images.last['url'])
         new_artist = Artist.new(name: artist.name, spotify_id: artist.id)
@@ -52,9 +65,21 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       end
       UserArtist.find_or_create_by(artist: new_artist, user: @user)
     end
+    raise
   end
 
-  def failure
-    redirect_to root_path
+  def musicbrainz(query, array)
+    mb_artist = MusicBrainz::Artist.find_by_name(query)
+    urls = mb_artist.urls[:social_network]
+    if urls
+      if urls.class == Array
+        urls.each do |url|
+          array << url if url.include?('facebook.com') && !array.include?(url)
+        end
+      else
+        array << urls
+      end
+    end
+    array
   end
 end
