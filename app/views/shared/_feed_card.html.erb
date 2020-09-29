@@ -1,0 +1,9 @@
+<div class="universal-card feed-card">
+  <h3><%= post.artist.name %> posted on <%= post.source %></h3>
+  <% if post.content %>
+    <p><%= post.content %></p>
+  <% end %>
+  <% if post.photo %>
+    <%= cl_image_tag post.photo.key, class: "universal-image" %>
+  <% end %>
+</div>
