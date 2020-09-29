@@ -30,10 +30,25 @@ artist1 = Artist.new({
 artist1.photo.attach(io: File.open("app/assets/images/Artist.jpg"), filename: "Artist", content_type: "image/jpg")
 artist1.save
 
-post1 = Post.create!({
-artist: artist1,
-source: 'Facebook'
+post1 = Post.new({
+  artist: artist1,
+  source: 'Facebook'
 })
+
+
+Post.create!({
+  artist: artist1,
+  source: 'Instagram'
+})
+
+facebook_post = Post.create!({
+  artist: artist1,
+  source: 'Facebook',
+  content: 'Our recent live show!'
+})
+
+facebook_post.photo.attach(io: File.open("app/assets/images/postimage.jpg"), filename: "Post Image", content_type: "image/jpg")
+facebook_post.save
 
 content1 = Content.create! ({
   format: 'text',

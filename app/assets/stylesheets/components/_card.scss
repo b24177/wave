@@ -1,9 +1,25 @@
 .universal-card {
 background: #FFFFFF;
-box-shadow: 3px 4px 10px rgba(0, 0, 0, 0.04);
+box-shadow: 3px 4px 10px rgba(0, 0, 0, 0.07);
 border-radius: 10px;
 width: 318px;
 margin: 16px auto;
+}
+
+.universal-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.feed-card h3 {
+  font-family: Roboto;
+  font-size: 11px;
+}
+
+.feed-card p {
+  font-family: Roboto;
+  font-size: 10px;
 }
 
 .artist-card {
@@ -20,8 +36,6 @@ margin: 16px auto;
   border-radius: 50%;
 }
 
-
-
 .artist-card h3 {
   font-family: Roboto;
   font-size: 17px;
@@ -33,5 +47,3 @@ margin: 16px auto;
   font-size: 9px;
   font-weight: 300;
 }
-
-
