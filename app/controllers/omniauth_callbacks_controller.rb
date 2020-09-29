@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 require 'open-uri'
 require 'musicbrainz'
+require 'koala'
 
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_before_action :verify_authenticity_token
@@ -65,6 +66,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       end
       UserArtist.find_or_create_by(artist: new_artist, user: @user)
     end
+    facebook
+    raise
   end
 
   def musicbrainz(query, array)
@@ -80,5 +83,13 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       end
     end
     array
+  end
+
+  def facebook
+    @graph = Koala::Facebook::API.new(ENV['FB_ACCESS_TOKEN'])
+    if @fb_urls
+      query = url.split('/')[-1]
+      artist = @graph.get_object(query)
+      raise
   end
 end
