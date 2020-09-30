@@ -14,3 +14,7 @@
 @import "pages/home";
 @import "devise/new";
 @import "artists/index";
+
+.app-height {
+  height: calc(100vh - 69px);
+}
