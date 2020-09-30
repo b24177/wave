@@ -44,7 +44,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       # redirect_to new_user_registration_url
     end
     get_top_artists(spotify_user)
-    #raise
   end
 
   def failure
@@ -56,7 +55,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def get_top_artists(user)
     a = []
     user.top_artists.each do |artist|
-      @fb_urls = musicbrainz(artist.name, a)
+      @SC_urls = musicbrainz(artist.name, a)
       unless Artist.exists?(spotify_id: artist.id)
         avatar = URI.open(artist.images.last['url'])
         new_artist = Artist.new(name: artist.name, spotify_id: artist.id)
@@ -65,20 +64,12 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       end
       UserArtist.find_or_create_by(artist: new_artist, user: @user)
     end
+    raise
   end
 
   def musicbrainz(query, array)
     mb_artist = MusicBrainz::Artist.find_by_name(query)
-    urls = mb_artist.urls[:social_network]
-    if urls
-      if urls.class == Array
-        urls.each do |url|
-          array << url if url.include?('facebook.com') && !array.include?(url)
-        end
-      else
-        array << urls
-      end
-    end
-    array
+    url = mb_artist.urls[:soundcloud]
+    array << url if url
   end
 end
