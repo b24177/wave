@@ -110,12 +110,7 @@ GEM
       concurrent-ruby (~> 1.0)
     jbuilder (2.10.1)
       activesupport (>= 5.0.0)
-    json (2.3.1)
     jwt (2.2.2)
-    koala (3.0.0)
-      addressable
-      faraday
-      json (>= 1.8)
     listen (3.2.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -291,7 +286,6 @@ DEPENDENCIES
   dotenv-rails
   font-awesome-sass
   jbuilder (~> 2.7)
-  koala
   listen (~> 3.2)
   musicbrainz
   omniauth-oauth2 (= 1.3.1)
