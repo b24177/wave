@@ -15,12 +15,23 @@ Post.delete_all
 
 print 'Creating new records'
 
-Lust_for_youth = Artist.new({
-  name: 'Lust for Youth',
+def create_artist(attributes = {})
+  artist = Artist.new({
+    name: attributes[:name],
+    location: attributes[:location],
+    spotify_id: attributes[:location]
+  })
+  artist.photo.attach(io: File.open(attributes[:file]), filename: attributes[:file], content_type: "image/jpg")
+  artist.save
+end
+
+create_artist({
+  name: 'Lust for youth',
   location: 'Copenhagen',
   spotify_id: '18x7cMASHAS2NJ4kcLJa1u',
-  facebook_id: nil
+  file: "app/assets/images/avatars/artist.jpg"
 })
+
 def create_post(attributes = {})
   post = Post.create!({
     artist: attributes[:artist],
@@ -31,24 +42,23 @@ def create_post(attributes = {})
   post.save
 end
 
-Lust_for_youth.photo.attach(io: File.open("app/assets/images/avatars/artist.jpg"), filename: "Artist", content_type: "image/jpg")
-Lust_for_youth.save
-
 create_post({
   artist: Lust_for_youth,
   source: 'Facebook',
   content: 'Our recent live show!',
   file:_"app/assets/images/card4.jpg"
 })
+
 create_post({
   artist: nil,
   source: 'Instagram',
   content: nil,
   file:_"app/assets/images/card1.jpg"
 })
+
 create_post({
   artist: nil,
   source: 'Twitter',
   content: nil,
-  file:_"app/assets/images/card1.jpg"
+  file:_"app/assets/images/card2.jpg"
 })
