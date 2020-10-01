@@ -1,5 +1,10 @@
 <div class="universal-card feed-card">
-  <h3><%= post.artist.name %> posted on <%= post.source %></h3>
+  <div class="post-title">
+    <% if post.artist.photo %>
+      <%= cl_image_tag post.artist.photo.key, class: "feed-avatar"%>
+      <% end %>
+    <h3><%= post.artist.name %> posted on <span style="color:#1777f2"><%= post.source %></span></h3>
+  </div>
   <% if post.content %>
     <p><%= post.content %></p>
   <% end %>

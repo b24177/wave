@@ -12,6 +12,11 @@ Artist.delete_all
 Content.delete_all
 Post.delete_all
 
+user1 = User.create!({
+  email: 'testUser@gmail.com',
+  password: 'password',
+  password_confirmation: 'password'
+})
 
 print 'Creating new records'
 
