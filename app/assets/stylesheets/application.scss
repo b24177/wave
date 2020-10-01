@@ -16,7 +16,8 @@
 @import "artists/index";
 
 .app-height {
-  height: calc(100vh - 69px);
+  min-height: calc(100vh - 120px);
+  padding-bottom: 69px;
 }
 
 .header {
