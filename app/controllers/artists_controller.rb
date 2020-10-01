@@ -9,8 +9,6 @@ class ArtistsController < ApplicationController
     @posts = Post.all.where(artist: @artist)
   end
 
-  def update; end
-
   def follow
     @artist = Artist.find(params[:id])
     if current_user.follow(@artist.id)
