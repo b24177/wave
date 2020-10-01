@@ -5,31 +5,50 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-print "deleting prior records"
+puts "deleting prior records"
+
 UserArtist.delete_all
 User.delete_all
 Artist.delete_all
 Content.delete_all
 Post.delete_all
 
-
 print 'Creating new records'
 
-artist1 = Artist.new({
+Lust_for_youth = Artist.new({
   name: 'Lust for Youth',
   location: 'Copenhagen',
   spotify_id: '18x7cMASHAS2NJ4kcLJa1u',
   facebook_id: nil
 })
+def create_post(attributes = {})
+  post = Post.create!({
+    artist: attributes[:artist],
+    source: attributes[:source],
+    content: attributes[:content]
+  })
+  post.photo.attach(io: File.open(attributes[:file]), filename: attributes[:file], content_type: "image/jpg")
+  post.save
+end
 
-artist1.photo.attach(io: File.open("app/assets/images/Artist.jpg"), filename: "Artist", content_type: "image/jpg")
-artist1.save
+Lust_for_youth.photo.attach(io: File.open("app/assets/images/avatars/artist.jpg"), filename: "Artist", content_type: "image/jpg")
+Lust_for_youth.save
 
-facebook_post = Post.create!({
-  artist: artist1,
+create_post({
+  artist: Lust_for_youth,
   source: 'Facebook',
-  content: 'Our recent live show!'
+  content: 'Our recent live show!',
+  file:_"app/assets/images/card4.jpg"
 })
-
-facebook_post.photo.attach(io: File.open("app/assets/images/postimage.jpg"), filename: "Post Image", content_type: "image/jpg")
-facebook_post.save
+create_post({
+  artist: nil,
+  source: 'Instagram',
+  content: nil,
+  file:_"app/assets/images/card1.jpg"
+})
+create_post({
+  artist: nil,
+  source: 'Twitter',
+  content: nil,
+  file:_"app/assets/images/card1.jpg"
+})
