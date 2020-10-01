@@ -27,6 +27,12 @@ margin: 16px auto;
   align-items: center;
 }
 
+.card-share {
+  display: flex;
+  justify-content: flex-end;
+  padding: 8px;
+}
+
 .artist-card {
   display: flex;
   padding: 32px 16px;
