@@ -36,6 +36,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user = User.from_omniauth(request.env["omniauth.auth"])
 
     if @user.persisted?
+
       sign_in_and_redirect @user, event: :authentication and return #this will throw if @user is not activated
       set_flash_message(:notice, :success, kind: "Spotify") if is_navigational_format?
     else
@@ -54,14 +55,13 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def get_top_artists(user)
     a = []
-    unless User.exists?(id: @user.id)
-      user.top_artists.each do |artist|
-        @SC_urls = musicbrainz(artist.name, a)
+    if User.exists?(id: @user.id) && !@user.artists.nil?
+      redirect_to posts_path
+    elsif User.exists?(id: @user.id) && @user.artists.nil?
+      user.top_artists.first(15).each do |artist|
+        #@SC_urls = musicbrainz(artist.name, a)
         unless Artist.exists?(spotify_id: artist.id)
-          avatar = URI.open(artist.images.last['url'])
-          new_artist = Artist.new(name: artist.name, spotify_id: artist.id)
-          new_artist.photo.attach(io: avatar, filename: 'avatar', content_type: 'image/jpg')
-          new_artist.save
+          new_artist = create_new_artist(artist)
         end
         UserArtist.find_or_create_by(artist: new_artist, user: @user)
       end
@@ -70,9 +70,16 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
 
-  def musicbrainz(query, array)
-    mb_artist = MusicBrainz::Artist.find_by_name(query)
-    url = mb_artist.urls[:soundcloud]
-    array << url if url
+  #def musicbrainz(query, array)
+  #  mb_artist = MusicBrainz::Artist.find_by_name(query)
+  #  url = mb_artist.urls[:soundcloud]
+  #  array << url if url
+  #end
+
+  def create_new_artist(artist)
+    avatar = URI.open(artist.images.last['url'])
+    new_artist = Artist.new(name: artist.name, spotify_id: artist.id)
+    new_artist.photo.attach(io: avatar, filename: 'avatar', content_type: 'image/jpg')
+    new_artist.save!
   end
 end
