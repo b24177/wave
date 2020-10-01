@@ -13,7 +13,6 @@ Artist.delete_all
 Content.delete_all
 Post.delete_all
 
-
 user1 = User.create!({
   email: 'testUser@gmail.com',
   password: 'password',
@@ -29,10 +28,11 @@ def create_artist(attributes = {})
     spotify_id: attributes[:location]
   })
   artist.photo.attach(io: File.open(attributes[:file]), filename: attributes[:file], content_type: "image/jpg")
-  artist.save
+  artist.save!
+  artist
 end
 
-create_artist({
+lust_for_youth = create_artist({
   name: 'Lust for youth',
   location: 'Copenhagen',
   spotify_id: '18x7cMASHAS2NJ4kcLJa1u',
@@ -46,26 +46,27 @@ def create_post(attributes = {})
     content: attributes[:content]
   })
   post.photo.attach(io: File.open(attributes[:file]), filename: attributes[:file], content_type: "image/jpg")
-  post.save
+  post.save!
+  post
 end
 
 create_post({
-  artist: Lust_for_youth,
+  artist: lust_for_youth,
   source: 'Facebook',
-  content: 'Our recent live show!',
-  file:_"app/assets/images/card4.jpg"
+  content: 'Check out our show in London!',
+  file: 'app/assets/images/posts/card4.jpg'
 })
 
 create_post({
-  artist: nil,
+  artist: lust_for_youth,
   source: 'Instagram',
-  content: nil,
-  file:_"app/assets/images/card1.jpg"
+  content: 'We had a great time, Paris!',
+  file: 'app/assets/images/posts/card1.jpg'
 })
 
 create_post({
-  artist: nil,
+  artist: lust_for_youth,
   source: 'Twitter',
-  content: nil,
-  file:_"app/assets/images/card2.jpg"
+  content: 'Mesmerizing...',
+  file: 'app/assets/images/posts/card2.jpg'
 })
