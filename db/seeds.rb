@@ -33,7 +33,7 @@ def create_artist(attributes = {})
 end
 
 lust_for_youth = create_artist({
-  name: 'Lust for youth',
+  name: 'Lust for Youth',
   location: 'Copenhagen',
   spotify_id: '18x7cMASHAS2NJ4kcLJa1u',
   file: "app/assets/images/avatars/artist.jpg"
