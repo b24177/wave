@@ -36,7 +36,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user = User.from_omniauth(request.env["omniauth.auth"])
 
     if @user.persisted?
-      sign_in_and_redirect @user, event: :authentication and return #this will throw if @user is not activated
+      sign_in_and_redirect @user, event: :authentication #this will throw if @user is not activated
       set_flash_message(:notice, :success, kind: "Spotify") if is_navigational_format?
     else
       @user.save!
@@ -65,8 +65,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
         end
         UserArtist.find_or_create_by(artist: new_artist, user: @user)
       end
-    else
-      redirect_to posts_path
     end
   end
 
