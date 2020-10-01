@@ -54,9 +54,9 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def get_top_artists(user)
     a = []
-    unless User.exists?(id: @user.id)
-      user.top_artists.each do |artist|
-        @SC_urls = musicbrainz(artist.name, a)
+    if @user.artists.empty?
+      user.top_artists.first(15).each do |artist|
+        #@SC_urls = musicbrainz(artist.name, a)
         unless Artist.exists?(spotify_id: artist.id)
           avatar = URI.open(artist.images.last['url'])
           new_artist = Artist.new(name: artist.name, spotify_id: artist.id)
@@ -70,9 +70,9 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
 
-  def musicbrainz(query, array)
-    mb_artist = MusicBrainz::Artist.find_by_name(query)
-    url = mb_artist.urls[:soundcloud]
-    array << url if url
-  end
+  #def musicbrainz(query, array)
+  #  mb_artist = MusicBrainz::Artist.find_by_name(query)
+  #  url = mb_artist.urls[:soundcloud]
+  #  array << url if url
+  #end
 end
