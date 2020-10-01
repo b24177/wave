@@ -1,9 +1,20 @@
 <div class="universal-card feed-card">
-  <h3><%= post.artist.name %> posted on <%= post.source %></h3>
+  <div class="post-title">
+    <% if post.artist.photo %>
+      <%= link_to artist_path(post.artist) do %>
+        <%= cl_image_tag post.artist.photo.key, class: "feed-avatar"%>
+      <% end %>
+    <h3><%= post.artist.name %> posted on <span style="color:#1777f2"><%= post.source %></span></h3>
+    <% end %>
+  </div>
   <% if post.content %>
     <p><%= post.content %></p>
   <% end %>
   <% if post.photo %>
     <%= cl_image_tag post.photo.key, class: "universal-image" %>
   <% end %>
+  <div class="card-share">
+    <i class="fal fa-retweet"></i>
+    <i class="fal fa-heart"></i>
+  </div>
 </div>
