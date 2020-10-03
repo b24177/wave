@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_26_134221) do
+ActiveRecord::Schema.define(version: 2020_10_03_115546) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,9 +40,9 @@ ActiveRecord::Schema.define(version: 2020_09_26_134221) do
     t.string "name", null: false
     t.string "location"
     t.string "spotify_id"
-    t.string "facebook_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "followers"
   end
 
   create_table "contents", force: :cascade do |t|
@@ -60,7 +60,6 @@ ActiveRecord::Schema.define(version: 2020_09_26_134221) do
     t.integer "source_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "content"
     t.index ["artist_id"], name: "index_posts_on_artist_id"
   end
 
