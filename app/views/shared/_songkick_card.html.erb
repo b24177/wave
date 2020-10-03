@@ -2,16 +2,16 @@
   <div class="post-title">
     <% if post.artist.photo %>
         <%= link_to artist_path(post.artist) do %>
-        <%= cl_image_tag Post.all.first.artist.photo.key, class:"feed-avatar" %>
+        <%= cl_image_tag post.artist.photo.key, class:"feed-avatar" %>
         <% end %>
       <% end %>
       <div class="songkick-title">
-      <h3> Joseph Black has a new concert on <span style="color:#F80046"> Songkick</span></h3>
+      <h3> <%= post.artist %> has a new concert on <span style="color:#F80046"> <% post.source %></span></h3>
       <div class="btn-buy-tickets"> BUY TICKETS</div>
       </div>
   </div>
   <div class="post-misc">
-    <p>Thu 25 Aug, 2020 @ Rockefeller</p>
+    <p><% post.contents.data %></p>
     <div class="card-share">
       <i class="fal fa-retweet"></i>
       <i class="fal fa-heart"></i>
