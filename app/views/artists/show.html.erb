@@ -1,13 +1,14 @@
 <div>
-  <div class="artist-info">
-    <div class="artist-name mt-5 py-5 ml-4">
-      <h3><%= @artist.name %></h3>
+  <div class="artist-info mt-2 mb-3 py-5 ml-4">
+      <div class="artist-details">
+        <h3><%= @artist.name %></h3>
+        <p><%= @artist.location %> | <%=@artist.followers.to_s(:delimited) %> Followers</p>
+      </div>
     </div>
     <div class="artist-img">
       <%= cl_image_tag @artist.photo.key %>
     </div>
   </div>
-      <!-- list of all artist posts -->
     <% @posts.each do |post|%>
     <%  if post.source == "Songkick" %>
     <%= render "shared/songkick_card", post:post%>
@@ -18,10 +19,3 @@
       <% end %>
     <% end %>
 </div>
-
-
-
-
-
-
-
