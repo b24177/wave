@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 require 'open-uri'
-require 'musicbrainz'
 
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_before_action :verify_authenticity_token
@@ -43,7 +42,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       # session["devise.spotify_data"] = request.env["omniauth.auth"].except(:extra) # Removing extra as it can overflow some session stores
       # redirect_to new_user_registration_url
     end
-    get_top_artists(spotify_user)
+    get_followed_artists(spotify_user)
   end
 
   def failure
@@ -52,25 +51,16 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   private
 
-  def get_top_artists(user)
-    a = []
+  def get_followed_artists(user)
     if @user.artists.empty?
-      user.top_artists.first(15).each do |artist|
-        #@SC_urls = musicbrainz(artist.name, a)
+      user.following(type: 'artist', limit: 10).each do |artist|
         unless Artist.exists?(spotify_id: artist.id)
-          avatar = URI.open(artist.images.last['url'])
           new_artist = Artist.new(name: artist.name, spotify_id: artist.id)
-          new_artist.photo.attach(io: avatar, filename: 'avatar', content_type: 'image/jpg')
+          new_artist.photo.attach(io: URI.open(artist.images.last['url']), filename: 'avatar', content_type: 'image/jpg')
           new_artist.save
         end
         UserArtist.find_or_create_by(artist: new_artist, user: @user)
       end
     end
   end
-
-  #def musicbrainz(query, array)
-  #  mb_artist = MusicBrainz::Artist.find_by_name(query)
-  #  url = mb_artist.urls[:soundcloud]
-  #  array << url if url
-  #end
 end
