@@ -1,9 +1,9 @@
 .universal-card {
-background: #FFFFFF;
-box-shadow: 3px 4px 10px rgba(0, 0, 0, 0.07);
-border-radius: 10px;
-width: 318px;
-margin: 16px auto;
+  background: #FFFFFF;
+  box-shadow: 3px 4px 10px rgba(0, 0, 0, 0.07);
+  border-radius: 10px;
+  width: 318px;
+  margin: 16px auto;
 }
 
 .universal-image {
@@ -31,7 +31,11 @@ margin: 16px auto;
   display: flex;
   justify-content: flex-end;
   padding: 8px;
-}
+  }
+
+  .card-share i{
+    margin: 0 2px;
+  }
 
 .artist-card {
   display: flex;
@@ -59,3 +63,35 @@ margin: 16px auto;
   font-weight: 300;
 }
 
+.songkick-card {
+  width: 326px;
+  height: 81px;
+  left: 21px;
+  top: 595px;
+}
+
+.songkick-card h3 {
+  word-wrap: break-word;
+  font-family: Roboto;
+  font-size: 11px;
+  align-items: center;
+}
+
+.songkick-card .post-title {
+  display: flex;
+  align-items: center;
+
+}
+.songkick-title {
+  display: flex;
+  align-items: center;
+  padding-top: 12px;
+  padding-right: 8px;
+}
+.songkick-card p {
+  font-size: 10px;
+}
+.songkick-card .post-misc {
+  display: flex;
+  margin-left: 46px;
+}
