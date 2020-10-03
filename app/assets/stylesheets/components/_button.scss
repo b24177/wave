@@ -13,7 +13,12 @@
   padding: 11px;
   color: white;
   border-width: 0px;
+  &:hover {
+    text-decoration: none;
+    color: #FFF;
 }
+}
+
 .btn-signup {
   background: #fff;
   color: #000;
