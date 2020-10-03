@@ -9,11 +9,18 @@
   </div>
       <!-- list of all artist posts -->
     <% @posts.each do |post|%>
+    <%  if post.source == "Songkick" %>
+    <%= render "shared/songkick_card", post:post%>
+    <% else %>
     <div class="artist-post">
       <%= render "shared/feed_card", post:post%>
     </div>
+      <% end %>
     <% end %>
 </div>
+
+
+
 
 
 
