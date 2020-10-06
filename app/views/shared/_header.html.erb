@@ -2,7 +2,7 @@
   <div class="header-logo">
     <%= render 'shared/logo' %>
     <%= link_to posts_path(@post), class: "notification-badge" do %>
-      <%= current_user.notifications.count %>
+      <%= current_user.notifications.unread.count %>
     <% end %>
   </div>
 </div>
