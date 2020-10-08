@@ -2,7 +2,9 @@
   <div class="artist-info mt-2 mb-3 py-5 ml-4">
       <div class="artist-details">
         <h3><%= @artist.name %></h3>
+        <% if @artist.location && @artist.followers %>
         <p><%= @artist.location %> | <%=@artist.followers.to_s(:delimited) %> Followers</p>
+        <% end %>
       </div>
     </div>
     <div class="artist-img">
