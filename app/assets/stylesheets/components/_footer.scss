@@ -19,6 +19,24 @@
 
 .footer-icon {
   color: black;
-  font-size: 20px;
+  font-size: 24px;
   text-decoration: none;
+}
+
+.home-icon {
+  position: relative;
+}
+
+.notification-badge {
+  color: black;
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  font-size: 12px;
+  background-color: black;
+  color: white;
+  text-align: center;
 }
