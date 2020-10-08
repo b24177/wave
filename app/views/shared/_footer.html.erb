@@ -3,12 +3,19 @@
 <% if current_user %>
   <footer class="global-footer">
     <%= link_to posts_path(@post) do %>
-      <i class="footer-icon fal fa-home-alt"></i>
+    <% if request.path == posts_path(@post) %>
+      <i class="footer-icon far fa-home-alt"></i>
+      <% else %>
+        <i class="footer-icon fal fa-home-alt"></i>
+      <% end %>
     <% end %>
     <%= link_to artists_path(@artist) do %>
-      <i class="footer-icon fal fa-music"></i>
+      <% if request.path == artists_path(@artist) %>
+        <i class="footer-icon far fa-music"></i>
+      <% else %>
+        <i class="footer-icon fal fa-music"></i>
+      <% end %>
     <% end %>
-    <i class="footer-icon fal fa-bell"></i>
     <i class="footer-icon fal fa-search"></i>
     <i class="footer-icon fal fa-cog"></i>
   </footer>
