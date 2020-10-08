@@ -60,12 +60,15 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
           new_artist = Artist.new(name: artist.name, spotify_id: artist.id, followers: artist.followers['total'])
           new_artist.photo.attach(io: URI.open(artist.images.last['url']), filename: 'avatar', content_type: 'image/jpg')
           new_artist.save
-          if !youtube_url(new_artist.name).nil?
+          unless youtube_url(new_artist.name).nil?
             post = Post.create!(artist: new_artist, source: 'Youtube')
             post.contents.create!({format: 'video', data: youtube_url(new_artist.name)})
           end
-          soundcloud_url(new_artist.name)
-          raise
+          unless soundcloud_url(new_artist.name).nil?
+            post = Post.create!(artist: new_artist, source: 'SoundCloud')
+            post.contents.create!({format: 'audio', data: soundcloud_url(new_artist.name)})
+            raise
+          end
         end
         UserArtist.find_or_create_by(artist: new_artist, user: @user)
       end
@@ -84,7 +87,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
 
-  def soundcloud_url(query)
+  def soundcloud_track_id(query)
     a = MusicBrainz::Artist.find_by_name(query)
     if a
       url = a.urls[:soundcloud]
