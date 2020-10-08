@@ -72,7 +72,7 @@ def create_post(attributes = {})
   post
 end
 
-create_post({
+post1 = create_post({
   artist: lust_for_youth,
   source: 'Facebook',
   contents: [
@@ -80,6 +80,8 @@ create_post({
     {format: 'image', data: '/posts_images/card3.jpg'}
   ]
 })
+
+Notification.create!(user: user1, post: post1)
 
 create_post({
   artist: lust_for_youth,

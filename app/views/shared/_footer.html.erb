@@ -2,9 +2,14 @@
 
 <% if current_user %>
   <footer class="global-footer">
+    <div class="home-icon">
     <%= link_to posts_path(@post) do %>
       <i class="footer-icon fal fa-home-alt"></i>
     <% end %>
+      <%= link_to posts_path(@post), class: "notification-badge" do %>
+        <%= current_user.notifications.unread.count %>
+    <% end %>
+    </div>
     <%= link_to artists_path(@artist) do %>
       <i class="footer-icon fal fa-music"></i>
     <% end %>
@@ -13,3 +18,4 @@
     <i class="footer-icon fal fa-cog"></i>
   </footer>
 <% end %>
+
