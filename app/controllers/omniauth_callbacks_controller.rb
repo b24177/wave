@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 require 'open-uri'
 require 'nokogiri'
+require 'soundcloud'
 
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_before_action :verify_authenticity_token
@@ -53,20 +54,22 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   private
 
   def get_followed_artists(user)
-    if @user.artists.empty?
+    #if @user.artists.empty?
       user.following(type: 'artist', limit: 10).each do |artist|
         unless Artist.exists?(spotify_id: artist.id)
-          new_artist = Artist.new(name: artist.name, spotify_id: artist.id)
+          new_artist = Artist.new(name: artist.name, spotify_id: artist.id, followers: artist.followers['total'])
           new_artist.photo.attach(io: URI.open(artist.images.last['url']), filename: 'avatar', content_type: 'image/jpg')
           new_artist.save
           if !youtube_url(new_artist.name).nil?
             post = Post.create!(artist: new_artist, source: 'Youtube')
             post.contents.create!({format: 'video', data: youtube_url(new_artist.name)})
           end
+          soundcloud_url(new_artist.name)
+          raise
         end
         UserArtist.find_or_create_by(artist: new_artist, user: @user)
       end
-    end
+    #end
   end
 
   def youtube_url(query)
@@ -78,6 +81,17 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
         channel = Yt::Channel.new id: url.split('/')[-1]
         Nokogiri::HTML(channel.videos.first.embed_html).xpath("//iframe")[0]['src'].split('//')[-1]
       end
+    end
+  end
+
+  def soundcloud_url(query)
+    a = MusicBrainz::Artist.find_by_name(query)
+    if a
+      url = a.urls[:soundcloud]
+      return if url.nil?
+      client = SoundCloud.new(:client_id => ENV['SC_CLIENT_ID'])
+      tracks = client.get('/resolve', :url => "#{url}/tracks")
+      raise
     end
   end
 end
