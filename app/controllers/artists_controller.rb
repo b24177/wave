@@ -28,4 +28,8 @@ class ArtistsController < ApplicationController
       end
     end
   end
+  def discover
+    spotify_id = current_user.user_artists.last.artist.spotify_id
+    @artists = RSpotify::Artist.find(spotify_id).related_artists
+  end
 end
