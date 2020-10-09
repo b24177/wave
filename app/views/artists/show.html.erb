@@ -9,13 +9,18 @@
       <%= cl_image_tag @artist.photo.key %>
     </div>
   </div>
-    <% @posts.each do |post|%>
-    <%  if post.source == "Songkick" %>
-    <%= render "shared/songkick_card", post:post%>
-    <% else %>
-    <div class="artist-post">
-      <%= render "shared/feed_card", post:post%>
-    </div>
+    <% @artist.posts.each do |post|%>
+      <%  case post.source %>
+      <% when 'Songkick' %>
+      <%= render "shared/songkick_card", post:post %>
+      <% when 'SoundCloud' %>
+      <%= render "shared/soundcloud_card", post:post %>
+      <% when 'Youtube' %>
+      <%= render "shared/youtube_card", post:post%>
+      <% else %>
+      <div class="artist-post">
+        <%= render "shared/feed_card", post:post%>
+      </div>
       <% end %>
     <% end %>
 </div>

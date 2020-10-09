@@ -1,7 +1,12 @@
 <div class="pb-5">
   <% @posts.each do |post| %>
-  <%  if post.source == "Songkick" %>
-    <%= render "shared/songkick_card", post:post%>
+  <%  case post.source %>
+    <% when 'Songkick' %>
+    <%= render "shared/songkick_card", post:post %>
+    <% when 'SoundCloud' %>
+    <%= render "shared/soundcloud_card", post:post %>
+    <% when 'Youtube' %>
+    <%= render "shared/youtube_card", post:post%>
      <% else %>
     <%= render "shared/feed_card", post:post%>
     <%  end %>

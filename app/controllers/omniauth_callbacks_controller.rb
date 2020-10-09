@@ -54,7 +54,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   private
 
   def get_followed_artists(user)
-    #if @user.artists.empty?
+    if @user.artists.empty?
       user.following(type: 'artist', limit: 10).each do |artist|
         unless Artist.exists?(spotify_id: artist.id)
           new_artist = Artist.new(name: artist.name, spotify_id: artist.id, followers: artist.followers['total'])
@@ -64,15 +64,14 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
             post = Post.create!(artist: new_artist, source: 'Youtube')
             post.contents.create!({format: 'video', data: youtube_url(new_artist.name)})
           end
-          unless soundcloud_url(new_artist.name).nil?
+          unless soundcloud_track_id(new_artist.name).nil?
             post = Post.create!(artist: new_artist, source: 'SoundCloud')
-            post.contents.create!({format: 'audio', data: soundcloud_url(new_artist.name)})
-            raise
+            post.contents.create!({format: 'audio', data: soundcloud_track_id(new_artist.name)})
           end
         end
         UserArtist.find_or_create_by(artist: new_artist, user: @user)
       end
-    #end
+    end
   end
 
   def youtube_url(query)
@@ -94,7 +93,9 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       return if url.nil?
       client = SoundCloud.new(:client_id => ENV['SC_CLIENT_ID'])
       tracks = client.get('/resolve', :url => "#{url}/tracks")
-      raise
+      if !tracks.empty?
+        tracks.first.uri.split('/')[-1]
+      end
     end
   end
 end
