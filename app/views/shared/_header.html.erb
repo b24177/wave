@@ -2,4 +2,9 @@
   <div class="header-logo">
     <%= render 'shared/logo' %>
   </div>
+  <div class="header-user-avatar">
+    <%= link_to profile_path(current_user) do %>
+      <img src="../../assets/avatars/user.jpg" alt="">
+    <% end %>
+  </div>
 </div>
