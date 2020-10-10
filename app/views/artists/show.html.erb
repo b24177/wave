@@ -5,7 +5,10 @@
         <% if @artist.location && @artist.followers %>
         <p> <%= @artist.location %>&emsp;|&emsp;<%= @artist.followers.to_s(:delimited) %> Followers</p>
         <% elsif @artist.location || @artist.followers %>
-        <p> <%= @artist.location %> <%=@artist.followers.to_s(:delimited) %> Followers</p>
+        <p class="mb-3"> <%= @artist.location %> <%=@artist.followers.to_s(:delimited) %> Followers</p>
+      <% end %>
+        <% if !current_user.is_following?(@artist.id) %>
+        <%= link_to "FOLLOW", follow_artist_path(@artist.id, hide_button: true), method: :post, remote: true, :class => "btn-follow-lg" %>
         <% end %>
       </div>
       <div class="artist-img">
