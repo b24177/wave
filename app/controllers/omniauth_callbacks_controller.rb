@@ -97,7 +97,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       else
         tracks = client.get('/resolve', :url => "#{url}/tracks")
       end
-      if !tracks.empty?
+      unless tracks.empty?
         tracks.first.uri.split('/')[-1]
       end
     end

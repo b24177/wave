@@ -1,9 +1,7 @@
 <h1>Discovery</h1>
 
 <div class="cards">
-  <% @artists.each do |artist|%>
-  <% related_artist = Artist.create!(name:artist.name, spotify_id: artist.id, followers: artist.followers["total"]) %>
-  <% related_artist.photo.attach(io: URI.open(artist.images.last["url"]), filename: "avatar", content_type: "image/jpg") %>
-    <%= render "shared/discover_card", artist:related_artist%>
+  <% @artists.each do |related_artist| %>
+    <%= render "shared/discover_card", artist:related_artist %>
   <% end %>
 </div>
