@@ -2,5 +2,12 @@ function renderArtist(userHTML) {
   const artist = document.querySelector("[data-artist='<%= @artist.id %>']");
   artist.outerHTML = userHTML;
 }
-
+function removeButton(){
+  const button = document.querySelector(".btn-follow-lg")
+  button.parentNode.removeChild(button);
+}
+<% if params[:hide_button]== "true" %>
+removeButton()
+<% else %>
 renderArtist('<%= j render "shared/artist_card",artist:@artist %>');
+<% end %>
