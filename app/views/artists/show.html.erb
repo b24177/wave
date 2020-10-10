@@ -18,19 +18,27 @@
     <% @artist.posts.each do |post|%>
       <%  case post.source %>
     <% when 'Songkick' %>
-    <%= render "shared/songkick_card", post:post %>
+      <%= render "shared/songkick_card", post:post %>
     <% when 'SoundCloud' %>
-    <%= render "shared/soundcloud_card", post:post %>
+      <%= render "shared/soundcloud_card", post:post %>
     <% when 'Youtube' %>
-    <%= render "shared/youtube_card", post:post%>
+      <%= render "shared/youtube_card", post:post%>
     <% when 'Facebook' %>
-    <%= render "shared/facebook_card", post:post%>
+    <div class="artist-post">
+      <%= render "shared/facebook_card", post:post%>
+    </div>
     <% when 'Twitter' %>
-    <%= render "shared/twitter_card", post:post%>
+    <div class="artist-post">
+      <%= render "shared/twitter_card", post:post%>
+    </div>
     <% when 'Instagram' %>
-    <%= render "shared/instagram_card", post:post%>
+    <div class="artist-post">
+      <%= render "shared/instagram_card", post:post%>
+    </div>
      <% else %>
-    <%= render "shared/feed_card", post:post%>
+     <div class="artist-post">
+        <%= render "shared/feed_card", post:post%>
+     </div>
     <%  end %>
-    <% end %>
+  <% end %>
 </div>
