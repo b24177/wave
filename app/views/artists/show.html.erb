@@ -1,16 +1,17 @@
-<div>
-  <div class="artist-info mt-2 mb-3 py-5 ml-4">
+<div class= "artist-page-wrapper">
+  <div class="artist-info">
       <div class="artist-details">
         <h3><%= @artist.name %></h3>
         <% if @artist.location && @artist.followers %>
-        <p><%= @artist.location %> | <%=@artist.followers.to_s(:delimited) %> Followers</p>
+        <p> <%= @artist.location %> | <%=@artist.followers.to_s(:delimited) %> Followers</p>
+        <% elsif @artist.location || @artist.followers %>
+        <p> <%= @artist.location %> <%=@artist.followers.to_s(:delimited) %> Followers</p>
         <% end %>
       </div>
+      <div class="artist-img">
+        <%= cl_image_tag @artist.photo.key %>
+      </div>
     </div>
-    <div class="artist-img">
-      <%= cl_image_tag @artist.photo.key %>
-    </div>
-  </div>
     <% @artist.posts.each do |post|%>
       <%  case post.source %>
       <% when 'Songkick' %>

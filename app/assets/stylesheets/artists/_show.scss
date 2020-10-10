@@ -1,21 +1,24 @@
 .artist-info {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns:1fr 116px;
+  width: 100%;
+  padding: 0 16px;
 }
 
 .artist-details p {
   font-family: Roboto;
   font-weight: 300;
   font-size: 10px;
+  width: auto;
 }
 
+.artist-details h3 {
+
+}
 .artist-img img {
   border-radius: 50%;
   width: 116px;
   height: 116px;
-  position: absolute;
-  left: 233px;
-  top: 85px;
 }
 
 .artist-name {
@@ -26,4 +29,11 @@
   line-height: 46px;
   letter-spacing: 0em;
   text-align: center;
+
+}
+
+.artist-page-wrapper {
+  width: 100%;
+  padding: 0;
+  padding-top: 16px;
 }
