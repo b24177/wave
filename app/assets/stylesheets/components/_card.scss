@@ -20,12 +20,12 @@
 .feed-card p {
   font-family: Roboto;
   font-size: 10px;
-  margin-left: 8px;
 }
 
 .feed-card .post-title {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  padding-top: 10px;
 }
 
 .card-share {
@@ -44,6 +44,7 @@
   align-items: center;
   justify-content: space-between;
 }
+
 .artist-card-text {
   margin-bottom: 0px;
 }
@@ -69,7 +70,6 @@
 
 .songkick-card {
   width: 90%;
-  height: 81px;
   left: 21px;
   top: 595px;
 }
@@ -88,8 +88,8 @@
 }
 .songkick-title {
   display: flex;
-  align-items: center;
-  padding-top: 12px;
+  align-items: flex-start;
+  padding-top: 20px;
   padding-right: 8px;
 }
 
@@ -97,10 +97,6 @@
   font-size: 10px;
 }
 
-.songkick-card .post-misc {
-  display: flex;
-  margin-left: 46px;
-}
 
 .artist-card-content {
   display: flex;

@@ -6,15 +6,15 @@
         <% end %>
       <% end %>
       <div class="songkick-title">
-      <h3> <%= post.artist.name %> has a new concert on <span style="color:#FF004E"> <%= post.source %></span></h3>
-      <div class="btn-buy-tickets"> BUY TICKETS</div>
+      <div>
+        <h3> <%= post.artist.name %> has a new concert on <span style="color:#FF004E"> <%= post.source %></span></h3>
+        <p><%= post.contents.first.data %></p>
+      </div>
+      <div class="btn-buy-tickets"> VIEW EVENT</div>
       </div>
   </div>
-  <div class="post-misc">
-    <p><%= post.contents.first.data %></p>
     <div class="card-share">
       <i class="fal fa-retweet"></i>
       <i class="fal fa-heart"></i>
     </div>
-  </div>
 </div>

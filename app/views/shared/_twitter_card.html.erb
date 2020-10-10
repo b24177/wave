@@ -4,12 +4,18 @@
       <%= link_to artist_path(post.artist) do %>
         <%= cl_image_tag post.artist.photo.key, class: "feed-avatar"%>
       <% end %>
-    <h3><%= post.artist.name %> posted on <span style="color:#1da1f2"><%= post.source %></span></h3>
     <% end %>
+    <div>
+      <h3><%= post.artist.name %> posted on <span style="color:#1da1f2"><%= post.source %></span></h3>
+      <% if post.contents %>
+        <% post.contents.each do |content| %>
+          <p><%= content.data if content.format == 'text' %></p>
+        <% end %>
+    <% end %>
+    </div>
   </div>
   <% if post.contents %>
     <% post.contents.each do |content| %>
-      <p><%= content.data if content.format == 'text' %></p>
       <% if content.format == 'image' %>
         <%= cl_image_tag content.data, class: "universal-image" %>
       <% end %>
