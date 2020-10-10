@@ -8,15 +8,11 @@
     <% end %>
   </div>
   <% if post.contents %>
-    <% post.contents.each do |content| %>
-      <p><%= content.data if content.format == 'text' %></p>
-      <% if content.format == 'image' %>
-        <%= cl_image_tag content.data, class: "universal-image" %>
-      <% end %>
-    <% end %>
+      <iframe width="318" height="179" src="http://<%= post.contents[0].data %>" frameborder="0" allowfullscreen></iframe>
   <% end %>
   <div class="card-share">
     <i class="fal fa-retweet"></i>
     <i class="fal fa-heart"></i>
   </div>
 </div>
+
