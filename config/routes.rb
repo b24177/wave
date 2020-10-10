@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   end
   resources :contents, only: [:index, :show]
   get '/posts' => "posts#index", :as => :user_root
+  get '/profile' => "pages#profile"
 end
