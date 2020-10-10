@@ -3,7 +3,7 @@
       <div class="artist-details">
         <h3><%= @artist.name %></h3>
         <% if @artist.location && @artist.followers %>
-        <p> <%= @artist.location %> | <%=@artist.followers.to_s(:delimited) %> Followers</p>
+        <p> <%= @artist.location %>&emsp;|&emsp;<%= @artist.followers.to_s(:delimited) %> Followers</p>
         <% elsif @artist.location || @artist.followers %>
         <p> <%= @artist.location %> <%=@artist.followers.to_s(:delimited) %> Followers</p>
         <% end %>
