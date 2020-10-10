@@ -92,7 +92,11 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       url = a.urls[:soundcloud]
       return if url.nil?
       client = SoundCloud.new(:client_id => ENV['SC_CLIENT_ID'])
-      tracks = client.get('/resolve', :url => "#{url}/tracks")
+      if url.include?('/tracks')
+        tracks = client.get('/resolve', :url => url)
+      else
+        tracks = client.get('/resolve', :url => "#{url}/tracks")
+      end
       if !tracks.empty?
         tracks.first.uri.split('/')[-1]
       end
