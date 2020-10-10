@@ -4,11 +4,16 @@
       <%= link_to artist_path(post.artist) do %>
         <%= cl_image_tag post.artist.photo.key, class: "feed-avatar"%>
       <% end %>
-    <h3><%= post.artist.name %> posted on <span style="color:#FF0000"><%= post.source %></span></h3>
+    <h3><%= post.artist.name %> posted on <span style="color:#1777f2"><%= post.source %></span></h3>
     <% end %>
   </div>
   <% if post.contents %>
-      <iframe width="318" height="179" src="http://<%= post.contents[0].data %>" frameborder="0" allowfullscreen></iframe>
+    <% post.contents.each do |content| %>
+      <p><%= content.data if content.format == 'text' %></p>
+      <% if content.format == 'image' %>
+        <%= cl_image_tag content.data, class: "universal-image" %>
+      <% end %>
+    <% end %>
   <% end %>
   <div class="card-share">
     <i class="fal fa-retweet"></i>

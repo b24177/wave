@@ -7,6 +7,12 @@
     <%= render "shared/soundcloud_card", post:post %>
     <% when 'Youtube' %>
     <%= render "shared/youtube_card", post:post%>
+    <% when 'Facebook' %>
+    <%= render "shared/facebook_card", post:post%>
+    <% when 'Twitter' %>
+    <%= render "shared/twitter_card", post:post%>
+    <% when 'Instagram' %>
+    <%= render "shared/instagram_card", post:post%>
      <% else %>
     <%= render "shared/feed_card", post:post%>
     <%  end %>

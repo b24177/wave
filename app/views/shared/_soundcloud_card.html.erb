@@ -4,12 +4,12 @@
       <%= link_to artist_path(post.artist) do %>
         <%= cl_image_tag post.artist.photo.key, class: "feed-avatar"%>
       <% end %>
-    <h3><%= post.artist.name %> posted on <span style="color:#1777f2"><%= post.source %></span></h3>
+    <h3><%= post.artist.name %> posted on <span style="color:#ff4200"><%= post.source %></span></h3>
     <% end %>
   </div>
   <% if post.contents %>
     <iframe width="100%" height="179" scrolling="no" frameborder="no" allow="autoplay"
-      src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/<%= post.contents[0].data %>&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
+      src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/<%= post.contents[0].data %>&color=%23ff5500&auto_play=false&hide_related=true&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&visual=false">
     </iframe>
   <% end %>
   <div class="card-share">
