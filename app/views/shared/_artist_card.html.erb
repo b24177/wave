@@ -10,7 +10,7 @@
       <h3 class="artist-card-text"><%= artist.name %></h3>
       <p><%= artist.followers.to_s(:delimited) %> Followers</p>
     </div>
-      <% if !current_user.is_following?(artist.id) %>
+      <% unless current_user.is_following?(artist.id) %>
         <%= link_to "FOLLOW", unfollow_artist_path(artist.id), method: :post, remote: true, :class => "btn-follow" %>
       <% else %>
         <%= link_to "UNFOLLOW", follow_artist_path(artist.id), method: :post, remote: true, :class => "btn-follow"%>

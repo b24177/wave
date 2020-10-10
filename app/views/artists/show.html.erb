@@ -7,7 +7,7 @@
         <% elsif @artist.location || @artist.followers %>
         <p class="mb-3"> <%= @artist.location %> <%=@artist.followers.to_s(:delimited) %> Followers</p>
       <% end %>
-        <% if !current_user.is_following?(@artist.id) %>
+        <% unless current_user.is_following?(@artist.id) %>
         <%= link_to "FOLLOW", follow_artist_path(@artist.id, hide_button: true), method: :post, remote: true, :class => "btn-follow-lg" %>
         <% end %>
       </div>
@@ -17,16 +17,20 @@
     </div>
     <% @artist.posts.each do |post|%>
       <%  case post.source %>
-      <% when 'Songkick' %>
-      <%= render "shared/songkick_card", post:post %>
-      <% when 'SoundCloud' %>
-      <%= render "shared/soundcloud_card", post:post %>
-      <% when 'Youtube' %>
-      <%= render "shared/youtube_card", post:post%>
-      <% else %>
-      <div class="artist-post">
-        <%= render "shared/feed_card", post:post%>
-      </div>
-      <% end %>
+    <% when 'Songkick' %>
+    <%= render "shared/songkick_card", post:post %>
+    <% when 'SoundCloud' %>
+    <%= render "shared/soundcloud_card", post:post %>
+    <% when 'Youtube' %>
+    <%= render "shared/youtube_card", post:post%>
+    <% when 'Facebook' %>
+    <%= render "shared/facebook_card", post:post%>
+    <% when 'Twitter' %>
+    <%= render "shared/twitter_card", post:post%>
+    <% when 'Instagram' %>
+    <%= render "shared/instagram_card", post:post%>
+     <% else %>
+    <%= render "shared/feed_card", post:post%>
+    <%  end %>
     <% end %>
 </div>
