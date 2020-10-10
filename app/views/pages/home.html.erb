@@ -1,10 +1,10 @@
 <div class="home-cover">
-  <div class="text-center fixed-top mt-5 py-4">
+  <div class="text-center fixed-top mt-4 py-4">
     <%= render 'shared/logo' %>
     <h1>Welcome to Wave!</h1>
-    <p>All content from your favorite artists in one app!</p>
+    <p>All content from your favorite music artists in one app!</p>
   </div>
-  <div class="btns-home fixed-bottom pb-6">
+  <div class="btns-home fixed-bottom mb-4 pb-6">
     <%= link_to 'SIGN UP', new_user_registration_path, class: 'btn-signup mb-4' %>
     <%= link_to 'LOG IN WITH SPOTIFY', 'users/auth/spotify', class: 'btn-login mb-1' %>
     <%= link_to 'LOG IN WITH EMAIL', new_user_session_path, class: 'btn-login' %>
