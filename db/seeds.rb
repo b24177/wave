@@ -29,10 +29,10 @@ end
 
 lust_for_youth = create_artist({
   name: 'Lust for Youth',
-  location: 'Copenhagen',
+  location: 'Copenhagen, Denmark',
   followers: 22161,
   spotify_id: '18x7cMASHAS2NJ4kcLJa1u',
-  avatar: "app/assets/images/avatars/artist.jpg"
+  avatar: "app/assets/images/avatars/lfy_avatar.jpg"
 })
 
 cut_copy = create_artist({
@@ -40,7 +40,7 @@ cut_copy = create_artist({
   location: 'Melbourne, Australia',
   followers: 274138,
   spotify_id: '4EENT7N7rCBwrddM3s0vFS',
-  avatar: "app/assets/images/avatars/cut_copy.jpg"
+  avatar: "app/assets/images/avatars/cut_copy_avatar.jpg"
 })
 
 the_drums = create_artist({
@@ -48,7 +48,7 @@ the_drums = create_artist({
   location: 'Brooklyn, USA',
   followers: 471808,
   spotify_id: '0p5axeJsbtTCXBrRVoKjwu',
-  avatar: "app/assets/images/avatars/artist.jpg"
+  avatar: "app/assets/images/avatars/the_drums_avatar.jpg"
 })
 
 girl_in_red = create_artist({
@@ -76,8 +76,8 @@ post1 = create_post({
   artist: lust_for_youth,
   source: 'Facebook',
   contents: [
-    {format: 'text', data: 'Check out our show in London!'},
-    {format: 'image', data: '/posts_images/card3.jpg'}
+    {format: 'text', data: 'Back in the studio!'},
+    {format: 'image', data: '/posts_images/card1.jpg'}
   ]
 })
 
@@ -85,27 +85,9 @@ Notification.create!(user: user1, post: post1)
 
 create_post({
   artist: lust_for_youth,
-  source: 'Instagram',
-  contents: [
-    {format: 'text', data: 'We had a great time, Paris!'},
-    {format: 'image', data: '/posts_images/card2.jpg'}
-  ]
-})
-
-create_post({
-  artist: lust_for_youth,
   source: 'Twitter',
   contents: [
-    {format: 'text', data: 'Mesmerizing...'},
-    {format: 'image', data: '/posts_images/card4.jpg'}
-  ]
-})
-
-create_post({
-  artist: lust_for_youth,
-  source: 'Facebook',
-  contents: [
-    {format: 'text', data: 'First Madrid, then Berlin!'}
+    {format: 'text', data: 'Get ready, Berlin!'}
   ]
 })
 
@@ -113,16 +95,8 @@ create_post({
   artist: lust_for_youth,
   source: 'Instagram',
   contents: [
-    {format: 'text', data:'In the studio'},
-    {format: 'image', data: '/posts_images/card1.jpg'}
-  ]
-})
-
-create_post({
-  artist: lust_for_youth,
-  source: 'Twitter',
-  contents: [
-    {format: 'text', data: 'You treated us so well, Amsterdam!'}
+    {format: 'text', data: 'We had a great time, Paris!'},
+    {format: 'image', data: '/posts_images/lfy_instagram.jpg'}
   ]
 })
 
@@ -139,16 +113,7 @@ create_post({
   source: 'Facebook',
   contents: [
     {format: 'text', data:'Great to be back, Australia!'},
-    {format: 'image', data:'/posts_images/card2.jpg'}
-  ]
-})
-
-create_post({
-  artist: cut_copy,
-  source: 'Instagram',
-  contents: [
-    {format: 'text', data: 'New album cover shoot'},
-    {format: 'image', data: '/posts_images/card4.jpg'}
+    {format: 'image', data:'/posts_images/cut_copy_facebook.jpg'}
   ]
 })
 
@@ -157,6 +122,15 @@ create_post({
   source: 'Twitter',
   contents: [
     {format: 'text', data: 'Excited to release our new album next week!'}
+  ]
+})
+
+create_post({
+  artist: cut_copy,
+  source: 'Instagram',
+  contents: [
+    {format: 'text', data: 'Getting ready for you, New York!'},
+    {format: 'image', data: '/posts_images/cut_copy_instagram.jpg'}
   ]
 })
 
@@ -172,16 +146,8 @@ create_post({
   artist: girl_in_red,
   source: 'Facebook',
   contents: [
-    {format: 'text', data: 'Great to be back, Trondheim!'}
-  ]
-})
-
-create_post({
-  artist: girl_in_red,
-  source: 'Instagram',
-  contents: [
-    {format: 'text', data: 'New album cover shoot'},
-    {format: 'image', data: '/posts_images/card2.jpg'}
+    {format: 'text', data: 'Great to be back, Trondheim!'},
+    {format: 'image', data: '/posts_images/gir_fb.jpg'}
   ]
 })
 
@@ -190,6 +156,15 @@ create_post({
   source: 'Twitter',
   contents: [
     {format: 'text', data: 'Making this album has been an amazing experience.'}
+  ]
+})
+
+create_post({
+  artist: girl_in_red,
+  source: 'Instagram',
+  contents: [
+    {format: 'text', data: 'New album cover shoot'},
+    {format: 'image', data: '/posts_images/gir_instagram.jpg'}
   ]
 })
 
