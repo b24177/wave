@@ -1,20 +1,20 @@
 <div class="universal-card" data-artist="<%= artist.id %>">
     <div class="artist-card">
-      <% if artist.photo %>
-        <%= link_to artist_path(artist) do %>
+      <% if artist.photo.attached? %>
+        <%= link_to artist_path(artist.id) do %>
         <%= cl_image_tag artist.photo.key %>
         <% end %>
       <% end %>
       <div class="artist-card-content">
-     <div style="width: 170px; margin: 0px auto;">
-      <h3 class="artist-card-text"><%= artist.name %></h3>
-      <p><%= artist.followers.to_s(:delimited) %> Followers</p>
-    </div>
-      <% unless current_user.is_following?(artist.id) %>
-        <%= link_to "FOLLOW", unfollow_artist_path(artist.id), method: :post, remote: true, :class => "btn-follow" %>
-      <% else %>
-        <%= link_to "UNFOLLOW", follow_artist_path(artist.id), method: :post, remote: true, :class => "btn-follow"%>
-      <% end %>
+        <div style="width: 170px; margin: 0px auto;">
+          <h3 class="artist-card-text"><%= artist.name %></h3>
+          <p><%= artist.followers.to_s(:delimited) %> Followers</p>
+        </div>
+        <% if current_user.is_following?(artist.id) %>
+          <%= link_to "UNFOLLOW", unfollow_artist_path(artist.id), method: :post, remote: true, :class => "btn-follow" %>
+        <% else %>
+          <%= link_to "FOLLOW", follow_artist_path(artist.id), method: :post, remote: true, :class => "btn-follow"%>
+        <% end %>
       </div>
     </div>
 </div>

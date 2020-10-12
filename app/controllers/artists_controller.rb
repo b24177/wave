@@ -1,12 +1,14 @@
 class ArtistsController < ApplicationController
 
   def index
-    @artists = current_user.artists
+    @artists = current_user.artists.select do |artist|
+      UserArtist.where(artist_id: artist.id).first.status == 'follow'
+    end
   end
 
   def show
     @artist = Artist.find(params[:id])
-    @posts = Post.all.where(artist: @artist)
+    @posts = Post.where(artist: @artist)
   end
 
   def follow

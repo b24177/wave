@@ -69,7 +69,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
             post.contents.create!({format: 'audio', data: soundcloud_track_id(new_artist.name)})
           end
         end
-        UserArtist.find_or_create_by(artist: new_artist, user: @user)
+        UserArtist.find_or_create_by(artist: new_artist, user: @user, status: 'follow')
       end
     end
   end
