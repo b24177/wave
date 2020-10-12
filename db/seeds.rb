@@ -43,14 +43,6 @@ cut_copy = create_artist({
   avatar: "app/assets/images/avatars/cut_copy_avatar.jpg"
 })
 
-the_drums = create_artist({
-  name: 'The Drums',
-  location: 'Brooklyn, USA',
-  followers: 471808,
-  spotify_id: '0p5axeJsbtTCXBrRVoKjwu',
-  avatar: "app/assets/images/avatars/the_drums_avatar.jpg"
-})
-
 girl_in_red = create_artist({
   name: 'Girl in Red',
   location: 'Oslo, Norway',

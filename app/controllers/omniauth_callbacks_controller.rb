@@ -45,6 +45,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       # redirect_to new_user_registration_url
     end
     get_followed_artists(spotify_user)
+    follow_seed_artists(@user)
+
   end
 
   def failure
@@ -52,6 +54,14 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   private
+
+  def follow_seed_artists(user)
+    Artist.first(3).each do |artist|
+      unless UserArtist.exists?(artist_id: artist.id)
+        UserArtist.create!(artist_id: artist.id, user: user, status: 'follow')
+      end
+    end
+  end
 
   def get_followed_artists(user)
     if @user.artists.empty?
