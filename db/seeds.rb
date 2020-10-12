@@ -35,6 +35,8 @@ lust_for_youth = create_artist({
   avatar: "app/assets/images/avatars/lfy_avatar.jpg"
 })
 
+#UserArtist.create!({artist_id: lust_for_youth.id, user: nil, status: nil})
+
 cut_copy = create_artist({
   name: 'Cut Copy',
   location: 'Melbourne, Australia',
@@ -42,6 +44,19 @@ cut_copy = create_artist({
   spotify_id: '4EENT7N7rCBwrddM3s0vFS',
   avatar: "app/assets/images/avatars/cut_copy_avatar.jpg"
 })
+
+#UserArtist.create!({artist_id: cut_copy.id, user: nil, status: nil})
+
+
+girl_in_red = create_artist({
+  name: 'Girl in Red',
+  location: 'Oslo, Norway',
+  followers: 1774168,
+  spotify_id: '3uwAm6vQy7kWPS2bciKWx9',
+  avatar: "app/assets/images/avatars/girl_in_red.jpg"
+})
+
+#UserArtist.create!({artist_id: girl_in_red.id, user: nil, status: nil})
 
 the_drums = create_artist({
   name: 'The Drums',
@@ -51,13 +66,8 @@ the_drums = create_artist({
   avatar: "app/assets/images/avatars/the_drums_avatar.jpg"
 })
 
-girl_in_red = create_artist({
-  name: 'Girl in Red',
-  location: 'Oslo, Norway',
-  followers: 1774168,
-  spotify_id: '3uwAm6vQy7kWPS2bciKWx9',
-  avatar: "app/assets/images/avatars/girl_in_red.jpg"
-})
+
+
 
 puts "Creating posts"
 
