@@ -1,7 +1,11 @@
 <h1>Artists</h1>
 
 <div class="cards">
-  <% @artists.each do |artist|%>
-    <%= render "shared/artist_card", artist:artist%>
+  <% unless @artists.empty? %>
+    <% @artists.each do |artist|%>
+      <%= render "shared/artist_card", artist:artist%>
+    <% end %>
+  <% else %>
+    <p>Start following your favorite artists now!</p>
   <% end %>
 </div>
