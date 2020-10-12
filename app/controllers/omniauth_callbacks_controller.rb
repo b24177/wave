@@ -56,7 +56,9 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def follow_seed_artists(user)
     Artist.first(3).each do |artist|
-      UserArtist.create!(artist_id: artist.id, user: user, status: 'follow')
+      unless UserArtist.exists?(artist_id: artist.id)
+        UserArtist.create!(artist_id: artist.id, user: user, status: 'follow')
+      end
     end
   end
 
