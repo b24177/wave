@@ -6,7 +6,7 @@
       <% end %>
     <% end %>
     <div>
-      <h3><%= post.artist.name %> posted on <span style="color:black"><%= post.source %></span></h3>
+      <h3><%= post.artist.name %> posted on <span style="color:#e1306c"><%= post.source %></span></h3>
       <% if post.contents %>
         <% post.contents.each do |content| %>
           <p><%= content.data if content.format == 'text' %></p>
