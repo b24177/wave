@@ -1,4 +1,4 @@
 meta_product_name: "Wave"
-meta_title: "Product name - Product tagline"
-meta_description: "Relevant description"
-meta_image: "cover.png" # should exist in `app/assets/images/
+meta_title: "Wave - One app for all your music artists' content"
+meta_description: "Use Wave to follow all content from your favorite music artists in one app."
+meta_image: "wave-fb.jpg" # should exist in `app/assets/images/
