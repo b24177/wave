@@ -36,12 +36,14 @@
   display: flex;
   justify-content: flex-end;
   padding: 8px;
-  }
-
-.card-share i{
+  i {
     margin: 0 2px;
     font-size: 19px;
+    &:hover {
+      cursor: pointer;
+    }
   }
+}
 
 .artist-card {
   display: flex;
