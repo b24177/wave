@@ -10,8 +10,8 @@
         <i class="footer-icon fal fa-home-alt"></i>
       <% end %>
     <% end %>
-      <%= link_to posts_path(@post), class: "notification-badge" do %>
-        <%= current_user.notifications.unread.count %>
+    <% unless current_user.notifications.unread.count == 0 %>
+      <%= render 'shared/notification_badge' %>
     <% end %>
     </div>
     <%= link_to artists_path(@artist) do %>
