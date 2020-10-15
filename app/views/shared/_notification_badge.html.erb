@@ -1,0 +1,3 @@
+<%= link_to posts_path(@post), class: "notification-badge" do %>
+    <%= current_user.notifications.unread.count %>
+<% end %>
