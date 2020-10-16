@@ -130,7 +130,7 @@ create_post({
   artist: cut_copy,
   source: 'Songkick',
   contents: [
-    {format: 'text', data: 'Saturday, October 7 @ Rockefeller'}
+    {format: 'text', data: 'Saturday, November 14 @ Rockefeller'}
   ]
 })
 
